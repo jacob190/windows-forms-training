@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="processorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="processorForm.Designer.cs">
+      <DependentUpon>processorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProcessorsList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -56,6 +62,9 @@
     <Compile Include="Processor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="processorForm.resx">
+      <DependentUpon>processorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProcessorsList.resx">
       <DependentUpon>ProcessorsList.cs</DependentUpon>
     </EmbeddedResource>
