@@ -8,9 +8,15 @@ namespace ProcessorApp
 {
     class Processors
     {
-        private List<Processor> ProcessorsList = new List<Processor>();
+        private List<Processor> processors = new List<Processor>();
 
+        public event Action<Processor> AddProcessorEvent;
 
+        public void AddProcessor (Processor processor)
+        {
+            processors.Add(processor);
+            AddProcessorEvent?.Invoke(processor);
+        }
 
     }
 }

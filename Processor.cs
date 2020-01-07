@@ -12,9 +12,18 @@ namespace ProcessorApp
         {
             get;
             set;
-        };
-        private int Cores;
-        private int TDP;
+        }
+
+        private int Cores
+        {
+            get;
+            set;
+        }
+        private int TDP
+        {
+            get;
+            set;
+        }
 
         public Processor()
         {
@@ -23,11 +32,13 @@ namespace ProcessorApp
             TDP = 0;
         }
 
-        string Name
+        public Processor(string name, int cores, int tdp)
+        {
+            Name = name;
+            Cores = cores;
+            TDP = tdp;
+        }
+
     
-
-
-    
-
     }
 }
