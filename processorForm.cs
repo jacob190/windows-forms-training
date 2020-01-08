@@ -20,18 +20,12 @@ namespace ProcessorApp
             ProcessorsList = processorsList;
         }
 
-        private void processorName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void addBtn_Click(object sender, EventArgs e)
         {
            
             Processor processor = new Processor( processorName.Text, processorCores.Text , processorTdp.Text );
-
             ProcessorsList.AddProcessor(processor);
-
             this.Close();
              
         }

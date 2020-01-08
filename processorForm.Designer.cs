@@ -45,7 +45,7 @@
             this.processorName.Size = new System.Drawing.Size(204, 20);
             this.processorName.TabIndex = 0;
             this.processorName.UseWaitCursor = true;
-            this.processorName.TextChanged += new System.EventHandler(this.processorName_TextChanged);
+            
             // 
             // processorCores
             // 

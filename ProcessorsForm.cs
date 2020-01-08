@@ -19,18 +19,25 @@ namespace ProcessorApp
             InitializeComponent();
         }
 
+        private void fillFormList()
+        {
+            foreach (Processor processor in processorsList.processors)
+            {
+                ListViewItem item = new ListViewItem();
+                item.Tag = processor;
+                processorsListView.Items.Add(item);
+            }
+        }
 
-
-        private void updateItems()
+        private void clearFormList()
         {
 
         }
-
-        private void updateItem()
+        private void updateFormList()
         {
-
-
+            
         }
+
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -42,7 +49,7 @@ namespace ProcessorApp
 
         private void ProcessorsForm_Load(object sender, EventArgs e)
         {
-
+           
         }
     }
 }
