@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProcessorApp
 {
-    class Processor
+    public class Processor
     {
         private string Name
         {
@@ -14,12 +14,12 @@ namespace ProcessorApp
             set;
         }
 
-        private int Cores
+        private string Cores
         {
             get;
             set;
         }
-        private int TDP
+        private string TDP
         {
             get;
             set;
@@ -28,11 +28,11 @@ namespace ProcessorApp
         public Processor()
         {
             Name = "-";
-            Cores = 0;
-            TDP = 0;
+            Cores = "-";
+            TDP = "-";
         }
 
-        public Processor(string name, int cores, int tdp)
+        public Processor(string name, string cores, string tdp)
         {
             Name = name;
             Cores = cores;

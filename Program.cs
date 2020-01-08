@@ -16,7 +16,7 @@ namespace ProcessorApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ProcessorsList());
+            Application.Run(new ProcessorsForm());
         }
     }
 }

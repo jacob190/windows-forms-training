@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ProcessorApp
 {
-    class Processors
+    public class Processors
     {
-        private List<Processor> processors = new List<Processor>();
+        public List<Processor> processors = new List<Processor>();
 
         public event Action<Processor> AddProcessorEvent;
 
