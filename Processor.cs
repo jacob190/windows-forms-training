@@ -8,18 +8,18 @@ namespace ProcessorApp
 {
     public class Processor
     {
-        private string Name
+        public string Name
         {
             get;
             set;
         }
 
-        private string Cores
+        public string Cores
         {
             get;
             set;
         }
-        private string TDP
+        public string TDP
         {
             get;
             set;

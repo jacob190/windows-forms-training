@@ -12,12 +12,32 @@ namespace ProcessorApp
 {
     public partial class processorForm : Form
     {
-        Processors ProcessorsList { get; set; }
+       private  Processors ProcessorsList { get; set; }
+       private  Processor Processor { get; set; }
 
-        public processorForm(Processors processorsList)
+
+        public string ProcessorName
+        {
+            get { return processorName.Text; }
+        }
+
+        public string ProcessorCores
+        {
+            get { return processorCores.Text; }
+        }
+
+        public string ProcessorTDP
+        {
+            get { return processorTdp.Text; }
+        }
+
+
+
+        public processorForm(Processor processor, Processors processorsList)
         {
             InitializeComponent();
             ProcessorsList = processorsList;
+            Processor = processor;
         }
 
 
@@ -28,6 +48,11 @@ namespace ProcessorApp
             ProcessorsList.AddProcessor(processor);
             this.Close();
              
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

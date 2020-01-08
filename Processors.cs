@@ -18,5 +18,15 @@ namespace ProcessorApp
             AddProcessorEvent?.Invoke(processor);
         }
 
+        public void UpdateProcessor(Processor processor)
+        {
+
+
+        }
+
+        private void filterList()
+        {
+
+        }
     }
 }

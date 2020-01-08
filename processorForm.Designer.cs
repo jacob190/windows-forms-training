@@ -45,7 +45,6 @@
             this.processorName.Size = new System.Drawing.Size(204, 20);
             this.processorName.TabIndex = 0;
             this.processorName.UseWaitCursor = true;
-            
             // 
             // processorCores
             // 
@@ -113,6 +112,7 @@
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.UseWaitCursor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // processorForm
             // 
