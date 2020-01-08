@@ -20,13 +20,22 @@ namespace ProcessorApp
 
         public void UpdateProcessor(Processor processor)
         {
-
+           
 
         }
 
-        private void filterList()
+        public List<Processor> GetFilteredProcessors(string value)
         {
+            List<Processor> FilteredProcList =
+                processors.Where(proc =>
+                proc.Name.ToLower().Contains(value.ToLower()) ||
+                proc.Cores.ToLower().Contains(value.ToLower()) ||
+                proc.TDP.ToLower().Contains(value.ToLower())
+                ).ToList();
 
+            return FilteredProcList;
         }
+
+
     }
 }

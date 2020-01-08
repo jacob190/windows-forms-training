@@ -23,6 +23,7 @@ namespace ProcessorApp
         private void updateListItem(ListViewItem item)
         {
             Processor processor = (Processor)item.Tag;
+          
             while (item.SubItems.Count < 3)
                 item.SubItems.Add(new ListViewItem.ListViewSubItem());
             item.SubItems[0].Text = processor.Name;
@@ -30,15 +31,30 @@ namespace ProcessorApp
             item.SubItems[2].Text = processor.TDP;
         }
 
-        private void updateFormList()
+        private void updateList(List<Processor> list)
         {
             processorsListView.Items.Clear();
-            foreach (Processor processor in processorsList.processors)
+
+
+
+            if (list == null)
             {
-                ListViewItem item = new ListViewItem();
-                item.Tag = processor;
-                updateListItem(item);
-                processorsListView.Items.Add(item);
+                foreach (Processor processor in processorsList.processors)
+                {
+                    ListViewItem item = new ListViewItem();
+                    item.Tag = processor;
+                    updateListItem(item);
+                    processorsListView.Items.Add(item);
+                }
+            }else
+            {
+                foreach (Processor processor in list)
+                {
+                    ListViewItem item = new ListViewItem();
+                    item.Tag = processor;
+                    updateListItem(item);
+                    processorsListView.Items.Add(item);
+                }
             }
         }
 
@@ -48,6 +64,7 @@ namespace ProcessorApp
             {
                 Processor processor = (Processor)processorsListView.SelectedItems[0].Tag;
                 processorForm processorForm = new processorForm(processor, processorsList);
+               
                 if (processorForm.ShowDialog() == DialogResult.OK)
                 {
                     processor.Name = processorForm.ProcessorName;
@@ -58,6 +75,11 @@ namespace ProcessorApp
                 }
             }
         }
+
+     
+
+
+
 
         #endregion
 
@@ -76,13 +98,13 @@ namespace ProcessorApp
 
         private void ProcessorsForm_Load(object sender, EventArgs e)
         {
-            updateFormList();
+            updateList(null);
             processorsList.AddProcessorEvent += ProcessorsList_AddProcessorEvent;
         }
 
         private void ProcessorsList_AddProcessorEvent(Processor obj)
         {
-            updateFormList();
+            updateList(null);
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -93,6 +115,14 @@ namespace ProcessorApp
         private void editToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             updateItem();
+        }
+
+        private void textBox1_KeyUp(object sender, KeyEventArgs e)
+        {
+           List<Processor> fillteredList = processorsList.GetFilteredProcessors(searchBox.Text);
+           updateList(fillteredList);
+        
+        
         }
     }
 }
