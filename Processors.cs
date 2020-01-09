@@ -11,6 +11,7 @@ namespace ProcessorApp
         public List<Processor> processors = new List<Processor>();
 
         public event Action<Processor> AddProcessorEvent;
+        public event Action<Processor> EditProcessorEvent;
 
         public void AddProcessor (Processor processor)
         {
@@ -20,7 +21,7 @@ namespace ProcessorApp
 
         public void UpdateProcessor(Processor processor)
         {
-           
+            EditProcessorEvent?.Invoke(processor);
 
         }
 

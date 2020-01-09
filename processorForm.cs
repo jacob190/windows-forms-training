@@ -14,7 +14,6 @@ namespace ProcessorApp
     {
         private Processors ProcessorsList { get; set; }
         private Processor Processor { get; set; }
-        private bool ToUpdate { get; set; } = false;
 
         public string ProcessorName
         {
@@ -31,13 +30,7 @@ namespace ProcessorApp
             get { return processorTdp.Text; }
         }
 
-        private void UpdateProcessor()
-        {
-            Processor.Name = processorName.Text;
-            Processor.Cores = processorCores.Text;
-            Processor.TDP = processorTdp.Text;
 
-        }
 
         private void CreateProcessor()
         {
@@ -46,43 +39,37 @@ namespace ProcessorApp
 
         }
 
-        public void SetFields()
-        {
-            btnAdd.Text = "Update";
-            processorName.Text = Processor.Name;
-            processorCores.Text = Processor.Cores;
-            processorTdp.Text = Processor.TDP;
-        }
 
-
-        public processorForm(Processor processor, Processors processorsList, bool toUpdate)
+        public processorForm(Processor processor, Processors processorsList)
         {
             InitializeComponent();
-            ProcessorsList = processorsList;
             Processor = processor;
-            ToUpdate = toUpdate;
+            ProcessorsList = processorsList;
+            
         }
 
 
-        private void addBtn_Click(object sender, EventArgs e)
-        {
-            if (ToUpdate)
-            {
-                UpdateProcessor();
-                ToUpdate = false;
-            }
-            else
-            {
-                CreateProcessor();
-            }
 
-            this.Close();
-
-        }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            CreateProcessor();
+            this.Close();
+        }
+
+        private void processorForm_Load(object sender, EventArgs e)
+        {
+            if (Processor != null)
+            {
+                processorName.Text = Processor.Name;
+                processorCores.Text = Processor.Cores;
+                processorTdp.Text = ProcessorTDP;
+            }
         }
     }
 }

@@ -101,7 +101,7 @@
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.UseWaitCursor = true;
-            this.btnAdd.Click += new System.EventHandler(this.addBtn_Click);
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnCancel
             // 
@@ -132,6 +132,7 @@
             this.Name = "processorForm";
             this.Text = "Processor";
             this.UseWaitCursor = true;
+            this.Load += new System.EventHandler(this.processorForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

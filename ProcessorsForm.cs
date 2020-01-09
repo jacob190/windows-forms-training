@@ -20,6 +20,26 @@ namespace ProcessorApp
         }
 
         #region methods 
+
+        private void editListItem()
+        {
+            if (processorsListView.SelectedItems.Count == 1)
+            {
+                Processor processor = (Processor)processorsListView.SelectedItems[0].Tag;
+                processorForm processorForm = new processorForm(processor, processorsList);
+                if (processorForm.ShowDialog() == DialogResult.OK)
+                {
+                    processor.Name = processorForm.ProcessorName;
+                    processor.Cores = processorForm.ProcessorCores;
+                    processor.TDP = processorForm.ProcessorTDP;
+
+                    processorsList.UpdateProcessor(processor);
+
+                }
+            }
+        }
+
+
         private void updateListItem(ListViewItem item)
         {
             Processor processor = (Processor)item.Tag;
@@ -34,9 +54,6 @@ namespace ProcessorApp
         private void updateList(List<Processor> list)
         {
             processorsListView.Items.Clear();
-
-
-
             if (list == null)
             {
                 foreach (Processor processor in processorsList.processors)
@@ -59,16 +76,6 @@ namespace ProcessorApp
             }
         }
 
-        private void updateItem()
-        {
-
-            Processor processor = (Processor)processorsListView.SelectedItems[0].Tag;
-            processorForm addEditForm = new processorForm(processor, null, true);
-            
-            addEditForm.Show();
-            
-        }
-
 
 
 
@@ -85,7 +92,7 @@ namespace ProcessorApp
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            processorForm processorForm = new processorForm(null, processorsList, false);
+            processorForm processorForm = new processorForm(null, processorsList);
 
             processorForm.ShowDialog();
 
@@ -95,11 +102,20 @@ namespace ProcessorApp
         {
             updateList(null);
             processorsList.AddProcessorEvent += ProcessorsList_AddProcessorEvent;
+            processorsList.EditProcessorEvent += ProcessorsList_EditProcessorEvent;
         }
 
-        private void ProcessorsList_AddProcessorEvent(Processor obj)
+        private void ProcessorsList_EditProcessorEvent(Processor obj)
         {
             updateList(null);
+        }
+
+        private void ProcessorsList_AddProcessorEvent(Processor processor)
+        {
+            ListViewItem item = new ListViewItem();
+            item.Tag = processor;
+            updateListItem(item);
+            processorsListView.Items.Add(item);
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -110,7 +126,7 @@ namespace ProcessorApp
         private void editToolStripMenuItem1_Click(object sender, EventArgs e)
         {
 
-            updateItem();
+            editListItem();
 
         }
 
