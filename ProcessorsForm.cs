@@ -13,7 +13,7 @@ namespace ProcessorApp
     public partial class ProcessorsForm : Form
     {
         public Processors processorsList = new Processors();
-        
+
         public ProcessorsForm()
         {
             InitializeComponent();
@@ -23,7 +23,7 @@ namespace ProcessorApp
         private void updateListItem(ListViewItem item)
         {
             Processor processor = (Processor)item.Tag;
-          
+
             while (item.SubItems.Count < 3)
                 item.SubItems.Add(new ListViewItem.ListViewSubItem());
             item.SubItems[0].Text = processor.Name;
@@ -46,7 +46,8 @@ namespace ProcessorApp
                     updateListItem(item);
                     processorsListView.Items.Add(item);
                 }
-            }else
+            }
+            else
             {
                 foreach (Processor processor in list)
                 {
@@ -60,40 +61,34 @@ namespace ProcessorApp
 
         private void updateItem()
         {
-            if (processorsListView.SelectedItems.Count == 1)
-            {
-                Processor processor = (Processor)processorsListView.SelectedItems[0].Tag;
-                processorForm processorForm = new processorForm(processor, processorsList);
-               
-                if (processorForm.ShowDialog() == DialogResult.OK)
-                {
-                    processor.Name = processorForm.ProcessorName;
-                    processor.Cores = processorForm.ProcessorCores;
-                    processor.TDP = processorForm.ProcessorTDP;
 
-                    processorsList.UpdateProcessor(processor);
-                }
-            }
+            Processor processor = (Processor)processorsListView.SelectedItems[0].Tag;
+            processorForm addEditForm = new processorForm(processor, null, true);
+            
+            addEditForm.Show();
+            
         }
 
-     
+
+
+
+
+
 
 
 
 
         #endregion
 
-
-
         #region events
 
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           processorForm processorForm = new processorForm(null, processorsList);
+            processorForm processorForm = new processorForm(null, processorsList, false);
 
-           processorForm.ShowDialog();
-         
+            processorForm.ShowDialog();
+
         }
 
         private void ProcessorsForm_Load(object sender, EventArgs e)
@@ -114,16 +109,23 @@ namespace ProcessorApp
 
         private void editToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+
             updateItem();
+
         }
 
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
-           List<Processor> fillteredList = processorsList.GetFilteredProcessors(searchBox.Text);
-           updateList(fillteredList);
-        
-        
+            List<Processor> fillteredList = processorsList.GetFilteredProcessors(searchBox.Text);
+            updateList(fillteredList);
+
+
         }
+
+       
     }
+    #endregion
 }
-#endregion
+
+
+

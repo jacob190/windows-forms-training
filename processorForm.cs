@@ -12,9 +12,9 @@ namespace ProcessorApp
 {
     public partial class processorForm : Form
     {
-       private  Processors ProcessorsList { get; set; }
-       private  Processor Processor { get; set; }
-
+        private Processors ProcessorsList { get; set; }
+        private Processor Processor { get; set; }
+        private bool ToUpdate { get; set; } = false;
 
         public string ProcessorName
         {
@@ -31,23 +31,53 @@ namespace ProcessorApp
             get { return processorTdp.Text; }
         }
 
+        private void UpdateProcessor()
+        {
+            Processor.Name = processorName.Text;
+            Processor.Cores = processorCores.Text;
+            Processor.TDP = processorTdp.Text;
+
+        }
+
+        private void CreateProcessor()
+        {
+            Processor processor = new Processor(processorName.Text, processorCores.Text, processorTdp.Text);
+            ProcessorsList.AddProcessor(processor);
+
+        }
+
+        public void SetFields()
+        {
+            btnAdd.Text = "Update";
+            processorName.Text = Processor.Name;
+            processorCores.Text = Processor.Cores;
+            processorTdp.Text = Processor.TDP;
+        }
 
 
-        public processorForm(Processor processor, Processors processorsList)
+        public processorForm(Processor processor, Processors processorsList, bool toUpdate)
         {
             InitializeComponent();
             ProcessorsList = processorsList;
             Processor = processor;
+            ToUpdate = toUpdate;
         }
 
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-           
-            Processor processor = new Processor( processorName.Text, processorCores.Text , processorTdp.Text );
-            ProcessorsList.AddProcessor(processor);
+            if (ToUpdate)
+            {
+                UpdateProcessor();
+                ToUpdate = false;
+            }
+            else
+            {
+                CreateProcessor();
+            }
+
             this.Close();
-             
+
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

@@ -66,6 +66,7 @@
             this.processorsListView.TabIndex = 0;
             this.processorsListView.UseCompatibleStateImageBehavior = false;
             this.processorsListView.View = System.Windows.Forms.View.Details;
+            
             // 
             // ProcessorsList
             // 
