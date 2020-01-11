@@ -76,6 +76,16 @@ namespace ProcessorApp
             }
         }
 
+        private void deleteListItem()
+        {
+            ListViewItem listViewProcessor = processorsListView.SelectedItems[0];
+            Processor processor = (Processor)listViewProcessor.Tag;
+
+
+            processorsListView.Items.Remove(listViewProcessor);
+            processorsList.deleteListItem(processor);
+        }
+
 
 
 
@@ -103,6 +113,12 @@ namespace ProcessorApp
             updateList(null);
             processorsList.AddProcessorEvent += ProcessorsList_AddProcessorEvent;
             processorsList.EditProcessorEvent += ProcessorsList_EditProcessorEvent;
+            processorsList.DeleteProcessorEvent += ProcessorsList_DeleteProcessorEvent;
+        }
+
+        private void ProcessorsList_DeleteProcessorEvent(Processor obj)
+        {
+            updateList(null);
         }
 
         private void ProcessorsList_EditProcessorEvent(Processor obj)
@@ -138,7 +154,10 @@ namespace ProcessorApp
 
         }
 
-       
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            deleteListItem();
+        }
     }
     #endregion
 }

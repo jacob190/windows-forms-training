@@ -12,6 +12,7 @@ namespace ProcessorApp
 
         public event Action<Processor> AddProcessorEvent;
         public event Action<Processor> EditProcessorEvent;
+        public event Action<Processor> DeleteProcessorEvent;
 
         public void AddProcessor (Processor processor)
         {
@@ -35,6 +36,12 @@ namespace ProcessorApp
                 ).ToList();
 
             return FilteredProcList;
+        }
+
+        public void deleteListItem(Processor processor)
+        {
+            processors.Remove(processor);
+            DeleteProcessorEvent?.Invoke(processor);
         }
 
 
